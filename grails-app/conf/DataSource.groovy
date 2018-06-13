@@ -1,9 +1,24 @@
 dataSource {
+//    pooled = true
+//    jmxExport = true
+//    driverClassName = "org.h2.Driver"
+//    username = "sa"
+//    password = ""
+//    logSql =true
+//    formatSql = true
+    
     pooled = true
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "org.postgresql.Driver"
+    username = "hackaton"
+    password = "404yquepasa"
+    // NOTE: both of these dialects have worked for me. But some people
+    // recommend using the net.sf version and not the org.hibernate version.
+    //dialect = org.hibernate.dialect.PostgreSQLDialect // honestly, not sure what
+    dialect = net.sf.hibernate.dialect.PostgreSQLDialect // the difference is.
+    //dialect = cl.previred.segrd.comunes.TableNameSequencePostgresDialect
+    //dialect = "net.kaleidos.hibernate.PostgresqlExtensionsDialect"
+    //postgresql.extensions.sequence_per_table = true
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -16,8 +31,32 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:postgresql://172.26.25.85:5432/hackatondb"
+            properties {
+               jmxEnabled = true
+               initialSize = 5
+               maxActive = 250
+               minIdle = 5
+               maxIdle = 25
+               maxWait = 10000
+               maxAge = 10 * 60000
+               timeBetweenEvictionRunsMillis = 5000
+               minEvictableIdleTimeMillis = 60000
+               validationQuery = "SELECT 1"
+               validationQueryTimeout = 3
+               validationInterval = 15000
+               testOnBorrow = true
+               testWhileIdle = true
+               testOnReturn = false
+               ignoreExceptionOnPreLoad = true
+               jdbcInterceptors = "ConnectionState;StatementCache(max=200)"
+               defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED // safe default
+               abandonWhenPercentageFull = 100 // settings are active only when pool is full
+               removeAbandonedTimeout = 120000
+               removeAbandoned = true
+               logAbandoned = false // causes stacktrace recording overhead, use only for debugging
+            }
         }
     }
     test {
@@ -36,7 +75,7 @@ environments {
                // https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/tomcat/jdbc/pool/PoolConfiguration.html
                jmxEnabled = true
                initialSize = 5
-               maxActive = 50
+               maxActive = 250
                minIdle = 5
                maxIdle = 25
                maxWait = 10000
