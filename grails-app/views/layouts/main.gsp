@@ -63,9 +63,10 @@
                         <g:link controller="solicitud" action="index">Consulta solicitudes</g:link>
                     </li>
                     <li id="botonInicio" >
-                        <g:link controller="solicitud" action="index">Pendientes Aprobación</g:link>
+                        <g:link controller="solicitud" action="obtienePendienteAprobacion">Pendientes Aprobación</g:link>
                     </li>
                     <li><g:link controller="plantilla" action="index">Mantenedor Plantillas PDF</g:link></li>
+                    <li><g:link controller="colaborador" action="logout">Salir</g:link></li>
                 </ul>
             </div>
         </div>

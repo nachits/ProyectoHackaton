@@ -101,4 +101,24 @@ class ColaboradorController {
             '*'{ render status: NOT_FOUND }
         }
     }
+    
+    def entrar(params){
+        def colaborador=Colaborador.findByNombreUsuario(params.nombreUsuario)
+        
+        if(colaborador){
+            session.nombreUsuario=colaborador.nombreUsuario
+            session.idUsuario=colaborador.id
+        }else{
+            session.invalidate()
+        }
+        
+        //render(view:'../index')
+        redirect(uri: '/')
+    }
+    
+     def logout = {
+        session.invalidate()
+        redirect(uri: '/')
+        //redirect(action: 'index')
+    }
 }

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
-	<head>
+	<head>  
+            <g:if test="${session?.nombreUsuario}">
 		<meta name="layout" content="main"/>
-		<title>Welcome to Grails</title>
+                   </g:if>
+		<title>Welcome </title>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -122,10 +124,10 @@
                 
 	</head>
 	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		
+		<g:if test="${session?.nombreUsuario}">
 		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
+			<h1>Bienvenido </h1>
 			<p>Congratulations, you have successfully started your first Grails application! At the moment
 			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
 			   content you may choose. Below is a list of controllers that are currently deployed in this application,
@@ -140,6 +142,15 @@
 				</ul>
 			</div>
 		</div>
+                 </g:if>
+                 <g:else>
+                     <g:form url="[controller:'colaborador', action:'entrar']" class="form-horizontal form-medium" method="post" enctype="multipart/form-data">
+                     <h1>Bienvenido </h1>
+                      <input type="text" class="form-control" placeholder="Ingrese usuario." id="nombreUsuario" name="nombreUsuario"  />
+                       <g:submitButton name="entra" class="save btn btn-primary" value="Entrar"  />
+                       </g:form>
+                  </g:else>
+                
                 <script>
                 var acc = document.getElementsByClassName("accordion");
                 var i;
