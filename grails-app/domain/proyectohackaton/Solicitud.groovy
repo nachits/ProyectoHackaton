@@ -16,5 +16,6 @@ class Solicitud {
     }
     
     static constraints = {
+        colaborador nullable: true
     }
 }
