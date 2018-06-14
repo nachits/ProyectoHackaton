@@ -10,6 +10,7 @@ class SolicitudController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def solicitudesService
+    def aprobacionService
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -111,5 +112,10 @@ class SolicitudController {
     def guarda(){
         println "entra a guarda controller"
         solicitudesService.guarda(params)
+    }
+    
+    def obtienePendienteAprobacion(){
+        println "entra a obtienePendienteAprobacion  controller"
+        aprobacionService.obtienePendienteAprobacion(params)
     }
 }

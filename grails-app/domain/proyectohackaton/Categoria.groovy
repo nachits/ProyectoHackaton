@@ -1,12 +1,11 @@
 package proyectohackaton
 
-class TipoSolicitud {
+class Categoria {
     
     String codigo
     String glosa
-    Categoria categoria
+    
     
     static constraints = {
-        categoria nullable: true
     }
 }

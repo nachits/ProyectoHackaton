@@ -19,12 +19,15 @@ class SolicitudesService {
     
     def guarda(params){
         try{
+            def colaborador=Colaborador.get(params.colaboradorId)
             println "guardando solicitud inicial asd"+params
+            
             //estadoPendiente
             Solicitud solicitud = new Solicitud()
             solicitud.tipoSolicitud=TipoSolicitud.get(params.tipoSolicitudId)
             solicitud.fechaCreacion=new Date()
             solicitud.estado=EstadoSolicitud.findByCodigo("1")
+            solicitud.colaborador=colaborador
 
             if(!solicitud.save(flush:true)){
                 println solicitud.errors.allErrors
@@ -41,12 +44,30 @@ class SolicitudesService {
                 }
             }
             
-            FlujoSolicitud flujoSolicitud= new FlujoSolicitud()
-            def colaborador=Colaborador.get(params.colaboradorId)
-            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findByGrupoColaborador(colaborador.grupoColaborador)
+            
+            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findAllByGrupoColaborador(colaborador.grupoColaborador)
             
             configuracionSolicitudAutorizacion.each{
-                println it
+                if(it.activo){
+                    FlujoSolicitud flujoSolicitud = new FlujoSolicitud()
+                    flujoSolicitud.solicitud=solicitud
+                    flujoSolicitud.aprobador=it.colaboradorAprobador
+                    flujoSolicitud.aprobadorSuplente=it.colaboradorAprobadorSuplente
+                    flujoSolicitud.orden=it.orden
+                    flujoSolicitud.estado=EstadoFlujoSolicitud.findByCodigo("1")
+                    flujoSolicitud.esAprobadorFinal=it.esAprobadorFinal
+                    if(it.orden==1){
+                        flujoSolicitud.activo=true
+                        flujoSolicitud.fechaCreacion=new Date()
+                    }else{
+                        flujoSolicitud.activo=false
+                    }
+                        
+                    if (!flujoSolicitud.save(flush:true)){
+                        println flujoSolicitud.errors.allErrors
+                    }
+                    
+                }
             }
             
         }catch(e){

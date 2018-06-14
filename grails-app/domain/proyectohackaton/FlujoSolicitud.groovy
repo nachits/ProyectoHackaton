@@ -11,6 +11,8 @@ class FlujoSolicitud {
     Boolean activo
     Colaborador aprobadorSuplente
     EstadoFlujoSolicitud estado
+    Date fechaCreacion
+    Date fechaActualizacion //aprueba o rechaza
     
     static mapping = {
         
@@ -19,5 +21,8 @@ class FlujoSolicitud {
     }
     
     static constraints = {
+        
+        fechaActualizacion nullable: true
+        fechaCreacion nullable: true
     }
 }
