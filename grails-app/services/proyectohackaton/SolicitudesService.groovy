@@ -41,12 +41,24 @@ class SolicitudesService {
                 }
             }
             
-            FlujoSolicitud flujoSolicitud= new FlujoSolicitud()
             def colaborador=Colaborador.get(params.colaboradorId)
-            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findByGrupoColaborador(colaborador.grupoColaborador)
+            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findAllByGrupoColaborador(colaborador.grupoColaborador)
             
             configuracionSolicitudAutorizacion.each{
-                println it
+                if(it.activo){
+                    FlujoSolicitud flujoSolicitud = new FlujoSolicitud()
+                    flujoSolicitud.solicitud=solicitud
+                    flujoSolicitud.aprobador=it.colaboradorAprobador
+                    flujoSolicitud.aprobadorSuplente=it.colaboradorAprobadorSuplente
+                    flujoSolicitud.orden=it.orden
+                    flujoSolicitud.estado=EstadoFlujoSolicitud.findByCodigo("1")
+                    flujoSolicitud.esAprobadorFinal=it.esAprobadorFinal
+                    flujoSolicitud.activo=true
+                    if (!flujoSolicitud.save(flush:true)){
+                        println flujoSolicitud.errors.allErrors
+                    }
+                    
+                }
             }
             
         }catch(e){
