@@ -30,11 +30,11 @@
 					
 						<th><g:message code="colaborador.estadoColaborador.label" default="Estado Colaborador" /></th>
 					
+						<th><g:message code="colaborador.grupoColaborador.label" default="Grupo Colaborador" /></th>
+					
 						<g:sortableColumn property="nombre" title="${message(code: 'colaborador.nombre.label', default: 'Nombre')}" />
 					
 						<g:sortableColumn property="nombreUsuario" title="${message(code: 'colaborador.nombreUsuario.label', default: 'Nombre Usuario')}" />
-					
-						<g:sortableColumn property="rut" title="${message(code: 'colaborador.rut.label', default: 'Rut')}" />
 					
 					</tr>
 				</thead>
@@ -48,11 +48,11 @@
 					
 						<td>${fieldValue(bean: colaboradorInstance, field: "estadoColaborador")}</td>
 					
+						<td>${fieldValue(bean: colaboradorInstance, field: "grupoColaborador")}</td>
+					
 						<td>${fieldValue(bean: colaboradorInstance, field: "nombre")}</td>
 					
 						<td>${fieldValue(bean: colaboradorInstance, field: "nombreUsuario")}</td>
-					
-						<td>${fieldValue(bean: colaboradorInstance, field: "rut")}</td>
 					
 					</tr>
 				</g:each>

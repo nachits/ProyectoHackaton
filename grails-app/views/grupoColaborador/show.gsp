@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list grupoColaborador">
 			
-				<g:if test="${grupoColaboradorInstance?.colaborador}">
-				<li class="fieldcontain">
-					<span id="colaborador-label" class="property-label"><g:message code="grupoColaborador.colaborador.label" default="Colaborador" /></span>
-					
-						<span class="property-value" aria-labelledby="colaborador-label"><g:link controller="colaborador" action="show" id="${grupoColaboradorInstance?.colaborador?.id}">${grupoColaboradorInstance?.colaborador?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${grupoColaboradorInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="grupoColaborador.nombre.label" default="Nombre" /></span>

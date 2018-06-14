@@ -29,6 +29,15 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: colaboradorInstance, field: 'grupoColaborador', 'error')} required">
+	<label for="grupoColaborador">
+		<g:message code="colaborador.grupoColaborador.label" default="Grupo Colaborador" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="grupoColaborador" name="grupoColaborador.id" from="${proyectohackaton.GrupoColaborador.list()}" optionKey="id" required="" value="${colaboradorInstance?.grupoColaborador?.id}" class="many-to-one"/>
+
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: colaboradorInstance, field: 'nombre', 'error')} ">
 	<label for="nombre">
 		<g:message code="colaborador.nombre.label" default="Nombre" />

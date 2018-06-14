@@ -50,6 +50,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${colaboradorInstance?.grupoColaborador}">
+				<li class="fieldcontain">
+					<span id="grupoColaborador-label" class="property-label"><g:message code="colaborador.grupoColaborador.label" default="Grupo Colaborador" /></span>
+					
+						<span class="property-value" aria-labelledby="grupoColaborador-label"><g:link controller="grupoColaborador" action="show" id="${colaboradorInstance?.grupoColaborador?.id}">${colaboradorInstance?.grupoColaborador?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${colaboradorInstance?.nombre}">
 				<li class="fieldcontain">
 					<span id="nombre-label" class="property-label"><g:message code="colaborador.nombre.label" default="Nombre" /></span>
