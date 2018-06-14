@@ -32,6 +32,7 @@ class SolicitudesService {
             if(!solicitud.save(flush:true)){
                 println solicitud.errors.allErrors
             }
+
             params.each{key, value->
                 def configuracionVariable= ConfiguracionVariable.findByPropiedad(key)
                 if(configuracionVariable){
@@ -39,7 +40,7 @@ class SolicitudesService {
                     propiedadesSolicitud.solicitud=solicitud
                     propiedadesSolicitud.configuracion=configuracionVariable
                     propiedadesSolicitud.valor=value
-
+                    println "propiedadesSolicitud: ${propiedadesSolicitud}"
                     propiedadesSolicitud.save(flush:true)
                 }
             }
@@ -62,7 +63,7 @@ class SolicitudesService {
                     }else{
                         flujoSolicitud.activo=false
                     }
-                        
+                    
                     if (!flujoSolicitud.save(flush:true)){
                         println flujoSolicitud.errors.allErrors
                     }

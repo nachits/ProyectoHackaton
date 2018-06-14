@@ -30,10 +30,10 @@
 
                                         <g:hiddenField name="tipoSolicitudId" value="${params.tipoSolicitudId}" />
                                         <g:each in="${configuracionVariable}" status="i" var="variable">
-                                            <label for="variable.propiedad">
+                                            <label for="${variable.propiedad}">
                                                 ${variable.glosa}
                                             </label>
-                                            <g:field name="variable.propiedad" type="text" value=""/>
+                                            <g:field name="${variable.propiedad}" type="text" value=""/>
                                         </g:each>
 				</fieldset>
 				<fieldset class="buttons">

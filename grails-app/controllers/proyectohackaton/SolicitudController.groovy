@@ -139,7 +139,9 @@ class SolicitudController {
     def guarda(){
         println "entra a guarda controller"
         println "params:${params}"
+        params.colaboradorId = session.idUsuario
         solicitudesService.guarda(params)
+        redirect(uri: "/")
     }
     
     def obtienePendienteAprobacion(){
