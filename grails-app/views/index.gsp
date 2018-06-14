@@ -125,13 +125,20 @@
 	</head>
 	<body>
 		
-
+		<g:if test="${session?.nombreUsuario}">
 		<div id="page-body" role="main">
 			<h1>Bienvenido </h1>
 			
+			
 		</div>
-   
-      
+                 </g:if>
+                 <g:else>
+                     <g:form url="[controller:'colaborador', action:'entrar']" class="form-horizontal form-medium" method="post" enctype="multipart/form-data">
+                     <h1>Bienvenido </h1>
+                      <input type="text" class="form-control" placeholder="Ingrese usuario." id="nombreUsuario" name="nombreUsuario"  />
+                       <g:submitButton name="entra" class="save btn btn-primary" value="Entrar"  />
+                       </g:form>
+                  </g:else>
                 
                 <script>
                 var acc = document.getElementsByClassName("accordion");
