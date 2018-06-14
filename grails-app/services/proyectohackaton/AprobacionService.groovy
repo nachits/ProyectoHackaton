@@ -31,4 +31,40 @@ class AprobacionService {
         retorno
         
     }
+    
+    def aprobarSolicitud(solicitud) {
+        
+        def flujoSolicitudActual = solicitud.find{it.activo}
+        
+        flujoSolicitudActual.activo = false
+        flujoSolicitudActual.fechaActualizacion = new Date()
+        flujoSolicitudActual.estado = EstadoFlujoSolicitud.findByCodigo('2')
+        
+        flujoSolicitudActual.save(flush:true)
+        
+        if(flujoSolicitudActual.esAprobadorFinal){
+            solicitud.estado = EstadoSolicitud.findByCodigo('2')
+        
+            solicitud.save(flush:true)
+        }else{
+            def proximoFlujo = solicitud.find{it.orden == (flujoSolicitudActual.orden + 1)}
+            
+            proximoFlujo.save(flush:true)
+        }    
+    }
+    
+    def rechazarSolicitud(solicitud) {
+        
+        def flujoSolicitudActual = solicitud.find{it.activo}
+        
+        flujoSolicitudActual.activo = false
+        flujoSolicitudActual.fechaActualizacion = new Date()
+        flujoSolicitudActual.estado = EstadoFlujoSolicitud.findByCodigo('3')
+        
+        flujoSolicitudActual.save(flush:true)
+        
+        solicitud.estado = EstadoSolicitud.findByCodigo('3')
+        
+        solicitud.save(flush:true)
+    }
 }
