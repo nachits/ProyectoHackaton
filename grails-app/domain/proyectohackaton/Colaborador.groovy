@@ -1,7 +1,9 @@
 package proyectohackaton
 
-class Usuario {
+class Colaborador {
+    
     String nombreUsuario
+    
     
     static constraints = {
     }
