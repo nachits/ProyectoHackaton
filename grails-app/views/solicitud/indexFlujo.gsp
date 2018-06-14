@@ -15,6 +15,7 @@
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
                         <g:form url="[controller:'solicitud', action:'aprobacion']" class="form-horizontal form-medium" method="post" enctype="multipart/form-data">
+                        <g:hiddenField name="solicitudId" value="${params.tipoCarga}"/>
 			<table class="table table-bordered">
 			<thead>
                                 <tr>
@@ -33,7 +34,7 @@
 				<tbody>
 				<g:each in="${listaParaAprobar}" status="i" var="lista">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                                                <td> <div class="text-center"> <g:checkBox name="seleccion" id="seleccion"  checked="${false}" /> </div> </td>
+                                                <td> <div class="text-center"> <g:checkBox name="seleccion" id="seleccion" value="${lista.numeroSolicitud}" checked="${false}" /> </div> </td>
                                                 <td> <div class="text-center">${lista?.numeroSolicitud} </div> </td>
                                                 <td> <div class="text-center">${lista?.fechaIngreso} </div> </td>
                                                 <td> <div class="text-center">${lista?.categoria} </div> </td>
