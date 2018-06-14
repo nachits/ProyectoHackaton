@@ -119,5 +119,6 @@ class SolicitudController {
     def obtienePendienteAprobacion(){
         println "entra a obtienePendienteAprobacion  controller"
         aprobacionService.obtienePendienteAprobacion(params)
+        println "sale a obtienePendienteAprobacion  controller"
     }
 }

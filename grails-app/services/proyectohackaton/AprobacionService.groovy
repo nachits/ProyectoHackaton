@@ -1,14 +1,15 @@
 package proyectohackaton
 
 import grails.transaction.Transactional
+import org.springframework.web.context.request.RequestContextHolder
 
 @Transactional
 class AprobacionService {
-
+    def session = RequestContextHolder.currentRequestAttributes().getSession()   
     def obtienePendienteAprobacion(params) {
         
         def estadoFlujoPendiente=EstadoFlujoSolicitud.findByCodigo("1") //pendiente
-        def flujosSolicitud=FlujoSolicitud.findAllByAprobadorAndActivoAndEstado(Colaborador.get(params.colaboradorId),true,estadoFlujoPendiente)
+        def flujosSolicitud=FlujoSolicitud.findAllByAprobadorAndActivoAndEstado(Colaborador.get(session.idUsuario),true,estadoFlujoPendiente)
         
         //println "flujosSolicitud "+flujosSolicitud
         def retorno=[]
