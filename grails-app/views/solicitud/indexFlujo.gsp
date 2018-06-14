@@ -1,5 +1,5 @@
 
-<%@ page import="proyectohackaton.Solicitud" %>
+>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,16 +20,16 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table border="1">
 			<thead>
                                 <tr>
-                                        <th><g:message code="solicitud.estado.label" default="N° Solicitud" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="Fecha ingreso" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="categoria" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="tiposolicitud" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="colaborador" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="gerencia" /></th>
-                                        <th><g:message code="solicitud.estado.label" default="fecharecepcion" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="N° Solicitud " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Fecha ingreso  " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="categoria  " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="tiposolicitud  " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="colaborador  " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="gerencia " /></th>
+                                        <th><g:message code="solicitud.estado.label" default="fecharecepcion  " /></th>
                                         
                                        
                                 </tr>
