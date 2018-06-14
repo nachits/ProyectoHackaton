@@ -6,6 +6,16 @@ import grails.transaction.Transactional
 class SolicitudesService {
 
     def crea(params) {
-        println "crea servicios "+params
+        println "creando servicios "+params
+        
+        def tipoSolicitud=TipoSolicitud.get(params.tipoSolicitudId)
+        def configuracionVariable=ConfiguracionVariable.findAllByTipoSolicitud(tipoSolicitud)
+        
+        println configuracionVariable
+        
+        configuracionVariable
+        
     }
+    
+    
 }
