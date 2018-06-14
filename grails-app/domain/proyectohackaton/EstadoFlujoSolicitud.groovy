@@ -1,6 +1,6 @@
 package proyectohackaton
 
-class TipoSolicitud {
+class EstadoFlujoSolicitud {
     
     String codigo
     String glosa
