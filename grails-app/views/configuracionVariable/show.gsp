@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list configuracionVariable">
 			
+				<g:if test="${configuracionVariableInstance?.glosa}">
+				<li class="fieldcontain">
+					<span id="glosa-label" class="property-label"><g:message code="configuracionVariable.glosa.label" default="Glosa" /></span>
+					
+						<span class="property-value" aria-labelledby="glosa-label"><g:fieldValue bean="${configuracionVariableInstance}" field="glosa"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${configuracionVariableInstance?.orden}">
 				<li class="fieldcontain">
 					<span id="orden-label" class="property-label"><g:message code="configuracionVariable.orden.label" default="Orden" /></span>
@@ -46,6 +55,15 @@
 					<span id="tipoDato-label" class="property-label"><g:message code="configuracionVariable.tipoDato.label" default="Tipo Dato" /></span>
 					
 						<span class="property-value" aria-labelledby="tipoDato-label"><g:link controller="tipoDato" action="show" id="${configuracionVariableInstance?.tipoDato?.id}">${configuracionVariableInstance?.tipoDato?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${configuracionVariableInstance?.tipoSolicitud}">
+				<li class="fieldcontain">
+					<span id="tipoSolicitud-label" class="property-label"><g:message code="configuracionVariable.tipoSolicitud.label" default="Tipo Solicitud" /></span>
+					
+						<span class="property-value" aria-labelledby="tipoSolicitud-label"><g:link controller="tipoSolicitud" action="show" id="${configuracionVariableInstance?.tipoSolicitud?.id}">${configuracionVariableInstance?.tipoSolicitud?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

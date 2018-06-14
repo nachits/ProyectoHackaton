@@ -24,11 +24,15 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="glosa" title="${message(code: 'configuracionVariable.glosa.label', default: 'Glosa')}" />
+					
 						<g:sortableColumn property="orden" title="${message(code: 'configuracionVariable.orden.label', default: 'Orden')}" />
 					
 						<g:sortableColumn property="propiedad" title="${message(code: 'configuracionVariable.propiedad.label', default: 'Propiedad')}" />
 					
 						<th><g:message code="configuracionVariable.tipoDato.label" default="Tipo Dato" /></th>
+					
+						<th><g:message code="configuracionVariable.tipoSolicitud.label" default="Tipo Solicitud" /></th>
 					
 					</tr>
 				</thead>
@@ -36,11 +40,15 @@
 				<g:each in="${configuracionVariableInstanceList}" status="i" var="configuracionVariableInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${configuracionVariableInstance.id}">${fieldValue(bean: configuracionVariableInstance, field: "orden")}</g:link></td>
+						<td><g:link action="show" id="${configuracionVariableInstance.id}">${fieldValue(bean: configuracionVariableInstance, field: "glosa")}</g:link></td>
+					
+						<td>${fieldValue(bean: configuracionVariableInstance, field: "orden")}</td>
 					
 						<td>${fieldValue(bean: configuracionVariableInstance, field: "propiedad")}</td>
 					
 						<td>${fieldValue(bean: configuracionVariableInstance, field: "tipoDato")}</td>
+					
+						<td>${fieldValue(bean: configuracionVariableInstance, field: "tipoSolicitud")}</td>
 					
 					</tr>
 				</g:each>
