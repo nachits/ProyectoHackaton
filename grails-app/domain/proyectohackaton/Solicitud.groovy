@@ -7,7 +7,7 @@ class Solicitud {
     EstadoSolicitud estado
     Colaborador colaborador
     
-    static hasMany = [flujosSolicitud: FlujoSolicitud] 
+    static hasMany = [flujosSolicitud: FlujoSolicitud, propiedadesSolicitud:PropiedadesSolicitud] 
     
     static mapping = {
         
