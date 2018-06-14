@@ -136,7 +136,9 @@ class SolicitudController {
         if(params?.combobox)
             params.tipoSolicitudId=params?.combobox
             
-        [configuracionVariable:solicitudesService.crea(params), params:params]
+        def colaborador=Colaborador.get(session.idUsuario)
+            
+        [configuracionVariable:solicitudesService.crea(params), params:params,colaborador:colaborador]
     }
     
     def guarda(){

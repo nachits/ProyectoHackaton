@@ -28,7 +28,12 @@
 			</ul>
 			</g:hasErrors>
                         <div class="col-md-6 form-group right">
+                             <label>Saldo vacaciones de colaborador</label>
+                                ${colaborador.saldoVacaciones}
                             <g:form url="[ action:'crea']" >
+                                
+                                
+                               
                                 
                                 
                                 <label>TipoSolicitud</label>
