@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="proyectohackaton.TipoSolicitud" %>
 <html>
 	<head>
 		<meta name="layout" content="main">
@@ -15,6 +16,7 @@
 		</div>
 		<div id="create-solicitud" class="content scaffold-create" role="main">
 			<h1><g:message code="default.create.label" args="[entityName]" /></h1>
+                
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -25,6 +27,27 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
+                        <div class="col-md-6 form-group right">
+                            <g:form url="[ action:'crea']" >
+                                
+                                
+                                <label>TipoSolicitud</label>
+                                     <g:select name="combobox" from="${TipoSolicitud.list()}" value="" optionValue="glosa" value="${params.combobox}" optionKey="codigo" class="form-control"/>
+                                     <fieldset class="buttons">
+					<g:submitButton name="create" class="save" value="${message(code: 'default.button.asd.label', default: 'Cambia')}" />
+				</fieldset>
+                                </g:form>
+                                </div>      
+                                
+                               
+                               <br> 
+                               <br> 
+                               <br> 
+                               <br> 
+                               
+                               <br> 
+                               <br> 
+                               <br> 
 			<g:form url="[resource:solicitudInstance, action:'guarda']" >
 				<fieldset class="form">
 

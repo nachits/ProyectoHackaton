@@ -35,7 +35,7 @@ class SolicitudController {
                 cantidadDias:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor,
                 fechaDesdeSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaDesde'}?.valor,
                 fechaHastaSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaHasta'}?.valor,
-                saldoVacaciones:it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger()
+                saldoVacaciones:it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor?.toInteger()
             ]
         }
 
@@ -132,6 +132,9 @@ class SolicitudController {
     def crea(){
         println "entra a cera controller"
         println "params: ${params}"
+        if(params?.combobox)
+            params.tipoSolicitudId=params?.combobox
+            
         [configuracionVariable:solicitudesService.crea(params), params:params]
     }
     
