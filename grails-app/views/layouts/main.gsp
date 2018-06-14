@@ -67,6 +67,8 @@
                     </li>
                     <li><g:link controller="plantilla" action="index">Mantenedor Plantillas PDF</g:link></li>
                     <li><g:link controller="colaborador" action="logout">Salir</g:link></li>
+                    
+                     <font color="#fff">${session.nombreUsuario}</font>
                 </ul>
             </div>
         </div>
