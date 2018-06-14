@@ -23,6 +23,24 @@
 			</g:if>
 			<ol class="property-list roles">
 			
+				<g:if test="${rolesInstance?.codigo}">
+				<li class="fieldcontain">
+					<span id="codigo-label" class="property-label"><g:message code="roles.codigo.label" default="Codigo" /></span>
+					
+						<span class="property-value" aria-labelledby="codigo-label"><g:fieldValue bean="${rolesInstance}" field="codigo"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${rolesInstance?.glosa}">
+				<li class="fieldcontain">
+					<span id="glosa-label" class="property-label"><g:message code="roles.glosa.label" default="Glosa" /></span>
+					
+						<span class="property-value" aria-labelledby="glosa-label"><g:fieldValue bean="${rolesInstance}" field="glosa"/></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:rolesInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
