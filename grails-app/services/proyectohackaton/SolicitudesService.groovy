@@ -21,6 +21,7 @@ class SolicitudesService {
         try{
             def colaborador=Colaborador.get(params.colaboradorId)
             println "guardando solicitud inicial asd"+params
+            
             //estadoPendiente
             Solicitud solicitud = new Solicitud()
             solicitud.tipoSolicitud=TipoSolicitud.get(params.tipoSolicitudId)
@@ -55,7 +56,13 @@ class SolicitudesService {
                     flujoSolicitud.orden=it.orden
                     flujoSolicitud.estado=EstadoFlujoSolicitud.findByCodigo("1")
                     flujoSolicitud.esAprobadorFinal=it.esAprobadorFinal
-                    flujoSolicitud.activo=true
+                    if(it.orden==1){
+                        flujoSolicitud.activo=true
+                        flujoSolicitud.fechaCreacion=new Date()
+                    }else{
+                        flujoSolicitud.activo=false
+                    }
+                        
                     if (!flujoSolicitud.save(flush:true)){
                         println flujoSolicitud.errors.allErrors
                     }
