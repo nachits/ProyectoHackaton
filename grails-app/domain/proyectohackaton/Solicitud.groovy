@@ -4,7 +4,7 @@ class Solicitud {
     
     TipoSolicitud tipoSolicitud
     Date fechaCreacion
-    TipoEstadoSolicitud tipoEstadoSolicitud
+    EstadoSolicitud estado
     
     static hasMany = [flujosSolicitud: FlujoSolicitud] 
     

@@ -10,6 +10,7 @@ class FlujoSolicitud {
     Boolean esAprobadorFinal
     Boolean activo
     Colaborador aprobadorSuplente
+    EstadoFlujoSolicitud estado
     
     static mapping = {
         
