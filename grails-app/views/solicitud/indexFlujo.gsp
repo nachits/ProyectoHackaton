@@ -26,7 +26,7 @@
                                         <th><g:message code="solicitud.estado.label" default="colaborador  " /></th>
                                         <th><g:message code="solicitud.estado.label" default="gerencia " /></th>
                                         <th><g:message code="solicitud.estado.label" default="fecharecepcion  " /></th>
-                                        
+                                        <th><g:message code="solicitud.estado.label" default="Solicitud PDF" /></th>
                                        
                                 </tr>
                         </thead>
@@ -41,7 +41,10 @@
                                                 <td> <div class="text-center">${lista?.colaborador} </div> </td>
                                                 <td> <div class="text-center">${lista?.gerencia} </div> </td>
                                                 <td> <div class="text-center">${lista?.fechaRecepcion} </div> </td>
-                                                
+                                                <td><g:link type="button" class="btn btn-primary" action="generacionArchivo" id="${lista?.numeroSolicitud}">
+                                                        Ver Documento
+                                                    </g:link>
+                                                </td>
 					</tr>
 				</g:each>
 				</tbody>
