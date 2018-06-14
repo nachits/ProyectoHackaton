@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class PlantillaController {
-
+    def generadorPDFService
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -29,12 +29,13 @@ class PlantillaController {
             notFound()
             return
         }
-
+        plantillaInstance.fecha= new Date()
+        plantillaInstance.validate()
         if (plantillaInstance.hasErrors()) {
             respond plantillaInstance.errors, view:'create'
             return
         }
-
+        
         plantillaInstance.save flush:true
 
         request.withFormat {
@@ -91,7 +92,15 @@ class PlantillaController {
             '*'{ render status: NO_CONTENT }
         }
     }
-
+    def generacionArchivo() {
+        def tipoSolicitud = TipoSolicitud.get(params.id)
+        def plantillaInstance = Plantilla.findByTipoSolicitud(tipoSolicitud)
+        byte[] pdf = generadorPDFService.generarPDFconHTML(plantillaInstance.html,[:])
+        response.contentType = 'application/pdf'
+        response.setHeader "Content-disposition", "attachment; filename=plantilla_vista_previa.pdf"
+        response.outputStream << pdf
+        response.outputStream.flush()
+    }
     protected void notFound() {
         request.withFormat {
             form multipartForm {

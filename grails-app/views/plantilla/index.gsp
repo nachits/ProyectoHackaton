@@ -23,12 +23,10 @@
 			<table>
 			<thead>
 					<tr>
-					
-						<th><g:message code="plantilla.tipoSolicitud.label" default="Tipo Solicitud" /></th>
-					
-						<g:sortableColumn property="fecha" title="${message(code: 'plantilla.fecha.label', default: 'Fecha')}" />
-					
-						<g:sortableColumn property="html" title="${message(code: 'plantilla.html.label', default: 'Html')}" />
+                                            <th><g:message code='plantilla.tipoSolicitud.label' default='Estado' /></th>
+                                            <th><g:message code='plantilla.fecha.label' default='Fecha' /></th>
+                                            <th><g:message code='plantilla.html.label' default='Html' /></th>
+                                            <th></th>
 					
 					</tr>
 				</thead>
@@ -36,11 +34,17 @@
 				<g:each in="${plantillaInstanceList}" status="i" var="plantillaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${plantillaInstance.id}">${fieldValue(bean: plantillaInstance, field: "tipoSolicitud")}</g:link></td>
+						<td><g:link action="show" id="${plantillaInstance.id}">${plantillaInstance.tipoSolicitud.glosa}</g:link></td>
 					
 						<td><g:formatDate date="${plantillaInstance.fecha}" /></td>
 					
 						<td>${fieldValue(bean: plantillaInstance, field: "html")}</td>
+                                                
+                                                <td>
+                                                    <g:link type="button" class="btn btn-primary" action="generacionArchivo" id="${plantillaInstance.tipoSolicitud.id}">
+                                                        vista Previa
+                                                    </g:link>
+                                                </td>
 					
 					</tr>
 				</g:each>
