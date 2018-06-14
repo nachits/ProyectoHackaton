@@ -9,7 +9,8 @@ import grails.transaction.Transactional
 class SolicitudController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    def solicitudesService
+    
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Solicitud.list(params), model:[solicitudInstanceCount: Solicitud.count()]
@@ -100,5 +101,10 @@ class SolicitudController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+    
+    def crea(){
+        println "entra a cera controller"
+        solicitudesService.crea(params)
     }
 }
