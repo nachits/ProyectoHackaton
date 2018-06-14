@@ -59,7 +59,8 @@
                         <a class="home" href="${createLink(uri: '/')}">Inicio</a>
                     </li>
                      <g:if test="${session?.esTrabajador}">
-                        <li><g:link controller="solicitud" action="crea" params="[tipoSolicitudId:1]">Feriado Legal</g:link></li>
+
+                        <li><g:link controller="solicitud" action="crea" params="[tipoSolicitudId:1]">Ingreso Solicitud</g:link></li>
                         <li id="botonInicio" >
                             <g:link controller="solicitud" action="index">Consulta solicitudes</g:link>
                         </li>
@@ -71,6 +72,7 @@
                         </li>
                     </g:if>
                     <li><g:link controller="plantilla" action="index">Mantenedor Plantillas PDF</g:link></li>
+                    <li><g:link controller="mantenedores" action="index">Mantenedores</g:link></li>
                     <li><g:link controller="colaborador" action="logout">Salir</g:link></li>
                     
                     <li><p class="bar-user"> &nbsp; Bienvenido: ${session.nombreUsuario}</p></li>

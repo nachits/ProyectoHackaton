@@ -36,7 +36,7 @@ class SolicitudController {
                 cantidadDias:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor,
                 fechaDesdeSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaDesde'}?.valor,
                 fechaHastaSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaHasta'}?.valor,
-                saldoVacaciones:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger():""
+                saldoVacaciones:(it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger():"")
             ]
         }
 
@@ -133,6 +133,9 @@ class SolicitudController {
     def crea(){
         println "entra a cera controller"
         println "params: ${params}"
+        if(params?.combobox)
+            params.tipoSolicitudId=params?.combobox
+            
         [configuracionVariable:solicitudesService.crea(params), params:params]
     }
     
@@ -161,6 +164,16 @@ class SolicitudController {
         response.setHeader "Content-disposition", "attachment; filename=plantilla_vista_previa.pdf"
         response.outputStream << pdf
         response.outputStream.flush()
+    }
+    
+    def aprobacion(){
+        println "asdas "+params
+        if(params?.entra=="Aprobar"){
+            //aprobacionService.aprobarSolicitud()
+        }else if(params?.entra=="Rechazar"){
+            //aprobacionService.rechazarSolicitud()
+        }
+        redirect(uri: "/")
     }
    
 }
