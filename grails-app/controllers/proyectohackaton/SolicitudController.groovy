@@ -11,15 +11,15 @@ class SolicitudController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def solicitudesService
     def aprobacionService
+    def session = RequestContextHolder.currentRequestAttributes().getSession()  
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         
-        def colaborador = Colaborador.get(1)
+        def colaborador = Colaborador.get(session.idUsuario)
         def solicitudes = Solicitud.findAllByColaborador(colaborador)
         def listaSolicitudes = []
         solicitudes.each{
-            println it.flujosSolicitud?.find{it.activo}.aprobador.nombre
             listaSolicitudes<<[id:it.id,
                 fechaCreacion:it.fechaCreacion,
                 categoria:it.tipoSolicitud?.categoria?.glosa,
