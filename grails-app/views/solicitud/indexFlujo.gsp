@@ -14,9 +14,11 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table border="1">
+                        <g:form url="[controller:'solicitud', action:'aprobacion']" class="form-horizontal form-medium" method="post" enctype="multipart/form-data">
+			<table class="table table-bordered">
 			<thead>
                                 <tr>
+                                        <th> <div class="text-center"> <g:checkBox name="seleccionaTodos"/> </div> </th>
                                         <th><g:message code="solicitud.estado.label" default="N° Solicitud " /></th>
                                         <th><g:message code="solicitud.estado.label" default="Fecha ingreso  " /></th>
                                         <th><g:message code="solicitud.estado.label" default="categoria  " /></th>
@@ -31,6 +33,7 @@
 				<tbody>
 				<g:each in="${listaParaAprobar}" status="i" var="lista">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                                                <td> <div class="text-center"> <g:checkBox name="seleccion" id="seleccion"  checked="${false}" /> </div> </td>
                                                 <td> <div class="text-center">${lista?.numeroSolicitud} </div> </td>
                                                 <td> <div class="text-center">${lista?.fechaIngreso} </div> </td>
                                                 <td> <div class="text-center">${lista?.categoria} </div> </td>
@@ -43,6 +46,11 @@
 				</g:each>
 				</tbody>
 			</table>
+                        
+                        <g:submitButton name="entra" value="Aprobar"  />
+                        <g:submitButton name="entra" value="Rechazar"  />
+                           </g:form>
+                        
 			<div class="pagination">
 				<g:paginate total="${solicitudInstanceCount ?: 0}" />
 			</div>

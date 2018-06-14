@@ -151,5 +151,15 @@ class SolicitudController {
             listaParaAprobar: listaParaAprobar, 
         ])
     }
+    
+    def aprobacion(){
+        println "asdas "+params
+        if(params?.entra=="Aprobar"){
+            //aprobacionService.aprobarSolicitud()
+        }else if(params?.entra=="Rechazar"){
+            //aprobacionService.rechazarSolicitud()
+        }
+        redirect(uri: "/")
+    }
    
 }
