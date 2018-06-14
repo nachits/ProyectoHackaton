@@ -1,10 +1,8 @@
 package proyectohackaton
 
-class GrupoColaborador {
-    
-    String nombre
-    
-    
+class Roles {
+    String codigo
+    String glosa
     static constraints = {
     }
 }

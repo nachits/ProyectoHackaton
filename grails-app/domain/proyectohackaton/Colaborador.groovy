@@ -1,7 +1,7 @@
 package proyectohackaton
 
 class Colaborador {
-    
+    GrupoColaborador grupoColaborador
     String nombreUsuario
     Integer rut
     String nombre
@@ -10,7 +10,7 @@ class Colaborador {
     Integer saldoVacaciones
     Integer saldoMedioDias
     EstadoColaborador estadoColaborador 
-    
+    static hasMany = [roles: Roles] 
     
     static constraints = {
     }
