@@ -19,12 +19,14 @@ class SolicitudesService {
     
     def guarda(params){
         try{
+            def colaborador=Colaborador.get(params.colaboradorId)
             println "guardando solicitud inicial asd"+params
             //estadoPendiente
             Solicitud solicitud = new Solicitud()
             solicitud.tipoSolicitud=TipoSolicitud.get(params.tipoSolicitudId)
             solicitud.fechaCreacion=new Date()
             solicitud.estado=EstadoSolicitud.findByCodigo("1")
+            solicitud.colaborador=colaborador
 
             if(!solicitud.save(flush:true)){
                 println solicitud.errors.allErrors
@@ -41,7 +43,7 @@ class SolicitudesService {
                 }
             }
             
-            def colaborador=Colaborador.get(params.colaboradorId)
+            
             def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findAllByGrupoColaborador(colaborador.grupoColaborador)
             
             configuracionSolicitudAutorizacion.each{
