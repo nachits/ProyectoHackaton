@@ -10,7 +10,7 @@ class Colaborador {
     Integer saldoVacaciones
     Integer saldoMedioDias
     EstadoColaborador estadoColaborador 
-    
+    static hasMany = [roles: Roles] 
     
     static constraints = {
     }

@@ -40,6 +40,10 @@ class SolicitudesService {
                     propiedadesSolicitud.save(flush:true)
                 }
             }
+            
+            FlujoSolicitud flujoSolicitud= new FlujoSolicitud()
+            
+            
         }catch(e){
             println "se cae guarda "
             println e
