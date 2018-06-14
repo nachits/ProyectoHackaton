@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="tipoSolicitud-label" class="property-label"><g:message code="plantilla.tipoSolicitud.label" default="Tipo Solicitud" /></span>
 					
-						<span class="property-value" aria-labelledby="tipoSolicitud-label"><g:link controller="tipoSolicitud" action="show" id="${plantillaInstance?.tipoSolicitud?.id}">${plantillaInstance?.tipoSolicitud?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="tipoSolicitud-label"><g:link controller="tipoSolicitud" action="show" id="${plantillaInstance?.tipoSolicitud?.id}">${plantillaInstance?.tipoSolicitud?.glosa?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

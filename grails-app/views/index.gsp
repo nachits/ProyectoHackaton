@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'bootstrap.css')}" />        
-            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'segrd.css')}" />
-            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.theme.css')}" />
-            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.structure.css')}" />
-            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.css')}" />
-            
-            <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery-1.11.4.js')}"/> 
-    <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery-ui.js')}"/> 
-    <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery.ui.datepicker-es.js')}"/> 
-
-
-    <mg:secureLinkJS src="${resource(dir: 'js', file: 'bootstrap/bootstrap.js')}"/> 
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
 		<style type="text/css" media="screen">
@@ -135,44 +123,7 @@
 	</head>
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary" style="width: 30%;">
-		    <button class="accordion">Ingreso Solicitudes</button>
-                    <div class="panel">
-                        <p>Tipo de Solicitud </p>
-                        <button class="accordionInner">+ RRHH</button>
-                        <div class="panel">
-                          <g:link controller="solicitud" action="create">Feriado Legal</g:link>
-                          <button class="accordionInner">+ Permiso Especial</button>
-                        <div class="panel">
-                            <p>Matrimonio civil </p>
-                            <p>Nacimiento </p>
-                            <p>Cambio de Domicilio </p>
-                            <p>Fallecimiento </p>
-                            <p>Permiso Paternal </p>
-                            <p>Compensación jornada </p>
-                            <p>Premio por años de servicio </p>
-                            <p>Media Jornada </p>
-                            <p>Otros </p>
-                        </div>
-                          <p>Bono escolaridad </p>
-                          <p>Beca Fondo de Estudios </p>
-                        </div>
-                        <button class="accordionInner">+ Sistemas</button>
-                        <div class="panel">
-                          <p>Instalación de Software </p>
-                          <p>Acceso carpetas compartidas </p>
-                          <p>Tráfico </p>
-                          <p>Otros </p>
-                        </div>
-                    </div>
-                    <div class="accordion" style="width: 76%;">
-                        <g:link controller="solicitud" action="index">Consulta solicitudes</g:link>
-                    </div>
-                    <button class="accordion">Pendientes Aprobación</button>
-                    <button class="accordion">Administración</button>
-
-
-		</div>
+		
 		<div id="page-body" role="main">
 			<h1>Welcome to Grails</h1>
 			<p>Congratulations, you have successfully started your first Grails application! At the moment

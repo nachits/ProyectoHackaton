@@ -8,7 +8,6 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-plantilla" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -25,7 +24,6 @@
 					<tr>
                                             <th><g:message code='plantilla.tipoSolicitud.label' default='Estado' /></th>
                                             <th><g:message code='plantilla.fecha.label' default='Fecha' /></th>
-                                            <th><g:message code='plantilla.html.label' default='Html' /></th>
                                             <th></th>
 					
 					</tr>
@@ -37,8 +35,6 @@
 						<td><g:link action="show" id="${plantillaInstance.id}">${plantillaInstance.tipoSolicitud.glosa}</g:link></td>
 					
 						<td><g:formatDate date="${plantillaInstance.fecha}" /></td>
-					
-						<td>${fieldValue(bean: plantillaInstance, field: "html")}</td>
                                                 
                                                 <td>
                                                     <g:link type="button" class="btn btn-primary" action="generacionArchivo" id="${plantillaInstance.tipoSolicitud.id}">
