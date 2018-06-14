@@ -22,25 +22,25 @@
 			</g:if>
 			<table>
 			<thead>
-					<tr>
-					
-						<th><g:message code="solicitud.estado.label" default="Estado" /></th>
-					
-						<g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha Creacion')}" />
-					
-						<th><g:message code="solicitud.tipoSolicitud.label" default="Tipo Solicitud" /></th>
-					
-					</tr>
-				</thead>
+                                <tr>
+
+                                        <th><g:message code="solicitud.estado.label" default="Tipo solicitud" /></th>
+
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha solicitud')}" />
+
+                                        <th><g:message code="solicitud.tipoSolicitud.label" default="Estado" /></th>
+
+                                </tr>
+                        </thead>
 				<tbody>
 				<g:each in="${solicitudInstanceList}" status="i" var="solicitudInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${solicitudInstance.id}">${fieldValue(bean: solicitudInstance, field: "estado")}</g:link></td>
+						<td> <div class="text-center">${solicitudInstance?.tipoSolicitud.glosa} </div> </td>
 					
 						<td><g:formatDate date="${solicitudInstance.fechaCreacion}" /></td>
 					
-						<td>${fieldValue(bean: solicitudInstance, field: "tipoSolicitud")}</td>
+						<td> <div class="text-center">${solicitudInstance?.estado.glosa} </div> </td>
 					
 					</tr>
 				</g:each>
