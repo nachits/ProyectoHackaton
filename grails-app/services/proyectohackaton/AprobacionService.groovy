@@ -24,9 +24,6 @@ class AprobacionService {
             fechaRecepcion:it.fechaCreacion]
             retorno<<objeto
         }
-        //def retorno=[numeroSolicitud:flujosSolicitud.solicitud.id,fechaIngreso:flujosSolicitud.solicitud.fechaCreacion]
-        
-       // println "retorno "+retorno
         
         retorno
         
