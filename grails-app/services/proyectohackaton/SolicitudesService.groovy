@@ -43,8 +43,7 @@ class SolicitudesService {
             
             FlujoSolicitud flujoSolicitud= new FlujoSolicitud()
             def colaborador=Colaborador.get(params.colaboradorId)
-            def grupoColaborador=GrupoColaborador.findByColaborador(colaborador)
-            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findByGrupoColaborador(grupoColaborador)
+            def configuracionSolicitudAutorizacion=ConfiguracionSolicitudAutorizacion.findByGrupoColaborador(colaborador.grupoColaborador)
             
             configuracionSolicitudAutorizacion.each{
                 println it
