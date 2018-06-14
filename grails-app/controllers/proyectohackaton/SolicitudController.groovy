@@ -15,11 +15,10 @@ class SolicitudController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         
-        def colaborador = Colaborador.get(1)
+        def colaborador = Colaborador.get(session.idUsuario)
         def solicitudes = Solicitud.findAllByColaborador(colaborador)
         def listaSolicitudes = []
         solicitudes.each{
-            println it.flujosSolicitud?.find{it.activo}.aprobador.nombre
             listaSolicitudes<<[id:it.id,
                 fechaCreacion:it.fechaCreacion,
                 categoria:it.tipoSolicitud?.categoria?.glosa,
@@ -147,15 +146,10 @@ class SolicitudController {
     def obtienePendienteAprobacion(){
         params.idUsuario=session.idUsuario
         def listaParaAprobar=aprobacionService.obtienePendienteAprobacion(params)
-        redirect(action:'indexFlujo', params:[listaParaAprobar:listaParaAprobar])
+        
+        render(view:'indexFlujo', model: [
+            listaParaAprobar: listaParaAprobar, 
+        ])
     }
-    
-    def indexFlujo(){
-        println "entra indexflujo "+params.listaParaAprobar
-        println "entra indexflujo "+params.listaParaAprobar.class
-        // params.max = Math.min(max ?: 10, 100)
-        //respond Solicitud.list(params), model:[solicitudInstanceCount: Solicitud.count()]
-        //render(view:'indexFlujo')
-        [listaParaAprobar:params.listaParaAprobar]
-    }
+   
 }
