@@ -30,8 +30,8 @@ class AprobacionService {
     }
     
     def aprobarSolicitud(solicitud) {
-        
-        def flujoSolicitudActual = solicitud.find{it.activo}
+        def solicitudInstance = Solicitud.get(solicitud)
+        def flujoSolicitudActual = solicitudInstance.flujosSolicitud.find{it.activo}
         
         flujoSolicitudActual.activo = false
         flujoSolicitudActual.fechaActualizacion = new Date()
@@ -40,12 +40,15 @@ class AprobacionService {
         flujoSolicitudActual.save(flush:true)
         
         if(flujoSolicitudActual.esAprobadorFinal){
-            solicitud.estado = EstadoSolicitud.findByCodigo('2')
-        
-            solicitud.save(flush:true)
+            solicitudInstance.estado = EstadoSolicitud.findByCodigo('2')
+            solicitudInstance.save(flush:true)
+            def colaboradorInstance = Colaborador.get(solicitudInstance.colaborador.id)
+            colaboradorInstance.saldoVacaciones = colaboradorInstance.saldoVacaciones - solicitudInstance.propiedadesSolicitud.find{it.configuracion.propiedad=='cantidadDias'}?.valor?.toInteger()
+            colaboradorInstance.save(flush:true)
         }else{
-            def proximoFlujo = solicitud.find{it.orden == (flujoSolicitudActual.orden + 1)}
-            
+            def proximoFlujo = solicitudInstance.flujosSolicitud.find{it.orden == (flujoSolicitudActual.orden + 1)}
+            proximoFlujo.activo = true
+            proximoFlujo.fechaCreacion = new Date()
             proximoFlujo.save(flush:true)
         }    
     }

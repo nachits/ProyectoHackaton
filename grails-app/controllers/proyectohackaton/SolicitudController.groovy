@@ -28,11 +28,11 @@ class SolicitudController {
                 colaborador:it.colaborador?.nombre,
                 gerencia:it.colaborador.grupoColaborador.gerencia,
                 totalAutorizaciones:it.flujosSolicitud.size(),
-                totalAutorizados:it.flujosSolicitud?.find{it.activo}.orden-1,
-                responsable:it.flujosSolicitud?.find{it.activo}.aprobador.nombre,
-                fechaDesde:it.flujosSolicitud?.find{it.activo}.fechaCreacion,
-                fechaHasta:it.flujosSolicitud?.find{it.activo}.fechaActualizacion,
-                diasTranscurridos:it.flujosSolicitud?.find{it.activo}.fechaCreacion-new Date(),
+                totalAutorizados:(it.flujosSolicitud?.find{it?.activo}?it.flujosSolicitud?.find{it?.activo}?.orden-1:''),
+                responsable:it.flujosSolicitud?.find{it?.activo}?.aprobador?.nombre,
+                fechaDesde:it.flujosSolicitud?.find{it?.activo}?.fechaCreacion,
+                fechaHasta:it.flujosSolicitud?.find{it?.activo}?.fechaActualizacion,
+                diasTranscurridos:(it.flujosSolicitud?.find{it?.activo}?it.flujosSolicitud?.find{it?.activo}?.fechaCreacion-new Date():''),
                 cantidadDias:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor,
                 fechaDesdeSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaDesde'}?.valor,
                 fechaHastaSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaHasta'}?.valor,
@@ -169,7 +169,7 @@ class SolicitudController {
     def aprobacion(){
         println "asdas "+params
         if(params?.entra=="Aprobar"){
-            //aprobacionService.aprobarSolicitud()
+            aprobacionService.aprobarSolicitud(params.seleccion)
         }else if(params?.entra=="Rechazar"){
             //aprobacionService.rechazarSolicitud()
         }
