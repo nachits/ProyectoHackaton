@@ -1,0 +1,169 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+/*body > .container {
+  padding: 60px 15px 0;
+}*/
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/* COLORES CORPORATIVOS PREVIRED */
+.navbar-default {
+    background-color: #5a1474;
+    border-color: #820082;
+}
+
+.bar-user {
+    color: #fff;
+    margin-top: 15px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ff9900;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fdfdff;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #ff9900;
+    background-color: #820082;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #ff9900;
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #fdfdff;
+    background-color: #820082;
+}
+/*********************************/
+
+
+
+
+
+/* LARGOS DE CONTROLES DE FORMULAIOS */
+.form-small .control-label {
+    width: 100px;
+}
+
+.form-small .controls {
+    margin-left: 120px;
+}
+
+.form-medium .control-label {
+    width: 180px;
+}
+
+.form-medium .controls {
+    margin-left: 200px;
+}
+
+.form-xlarge .control-label {
+    width: 240px;
+}
+
+.form-xlarge .controls {
+    margin-left: 260px;
+}
+
+/* INPUT FILE COMO BOTON */
+/*.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}*/
+
+/* Pagination fix */
+.pagination .disabled, .pagination .currentStep, .pagination .step {
+    float: left;
+    padding: 0 10px;
+    border-right: 1px solid;
+    line-height: 25px;
+    border-right-color: rgba(0, 0, 0, 0.15);
+}
+.pagination .prevLink {
+    float: left;
+    padding: 0 10px;    
+    line-height: 25px;  
+}
+
+.pagination .nextLink {
+    float: left;
+    padding: 0 10px;    
+    line-height: 25px;    
+} 
+.notFound{
+	padding: 10%;
+}
+
+body .container{
+    width : 90% ;
+}
+div .container{
+    width : 100% ;
+}
+
+thead{
+   /*background-color: lavender;*/
+}
+
+tbody tr:hover{
+   background-color: beige;
+}

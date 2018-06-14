@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
+            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'bootstrap.css')}" />        
+            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'segrd.css')}" />
+            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.theme.css')}" />
+            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.structure.css')}" />
+            <mg:secureLinkHead rel="stylesheet" href="${resource(dir:'/css/',file:'jquery-ui.css')}" />
+            
+            <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery-1.11.4.js')}"/> 
+    <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery-ui.js')}"/> 
+    <mg:secureLinkJS src="${resource(dir: 'js', file: 'jquery/jquery.ui.datepicker-es.js')}"/> 
+
+
+    <mg:secureLinkJS src="${resource(dir: 'js', file: 'bootstrap/bootstrap.js')}"/> 
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
 		<style type="text/css" media="screen">
@@ -78,29 +90,88 @@
 					margin-top: 0;
 				}
 			}
+                        .accordion {
+                            background-color: #4B0082;
+                            color: #fff;
+                            cursor: pointer;
+                            padding: 18px;
+                            width: 100%;
+                            text-align: left;
+                            border-style: double;
+                            border-width: thick;
+                            outline: none;
+                            transition: 0.4s;
+                        }
+                        
+                        .accordionInner {
+                            background-color: #fff;
+                            color: #000000;
+                            cursor: pointer;
+                            padding: 18px;
+                            width: 100%;
+                            text-align: left;
+                            border: none;
+                            outline: none;
+                            transition: 0.4s;
+                        }
+
+                        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+                        .active, .accordion:hover {
+                            background-color: #4B0082;
+                        }
+                        
+
+                        /* Style the accordion panel. Note: hidden by default */
+                        .panel {
+                            padding: 0 18px;
+                            background-color: white;
+                            display: none;
+                            overflow: hidden;
+                        }
+                        
+                        
 		</style>
+                
 	</head>
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			<h1>Application Status</h1>
-			<ul>
-				<li>App version: <g:meta name="app.version"/></li>
-				<li>Grails version: <g:meta name="app.grails.version"/></li>
-				<li>Groovy version: ${GroovySystem.getVersion()}</li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-			</ul>
-			<h1>Installed Plugins</h1>
-			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
-			</ul>
+		<div id="status" role="complementary" style="width: 30%;">
+		    <button class="accordion">Ingreso Solicitudes</button>
+                    <div class="panel">
+                        <p>Tipo de Solicitud </p>
+                        <button class="accordionInner">+ RRHH</button>
+                        <div class="panel">
+                          <g:link controller="solicitud" action="create">Feriado Legal</g:link>
+                          <button class="accordionInner">+ Permiso Especial</button>
+                        <div class="panel">
+                            <p>Matrimonio civil </p>
+                            <p>Nacimiento </p>
+                            <p>Cambio de Domicilio </p>
+                            <p>Fallecimiento </p>
+                            <p>Permiso Paternal </p>
+                            <p>Compensación jornada </p>
+                            <p>Premio por años de servicio </p>
+                            <p>Media Jornada </p>
+                            <p>Otros </p>
+                        </div>
+                          <p>Bono escolaridad </p>
+                          <p>Beca Fondo de Estudios </p>
+                        </div>
+                        <button class="accordionInner">+ Sistemas</button>
+                        <div class="panel">
+                          <p>Instalación de Software </p>
+                          <p>Acceso carpetas compartidas </p>
+                          <p>Tráfico </p>
+                          <p>Otros </p>
+                        </div>
+                    </div>
+                    <div class="accordion" style="width: 76%;">
+                        <g:link controller="solicitud" action="index">Consulta solicitudes</g:link>
+                    </div>
+                    <button class="accordion">Pendientes Aprobación</button>
+                    <button class="accordion">Administración</button>
+
+
 		</div>
 		<div id="page-body" role="main">
 			<h1>Welcome to Grails</h1>
@@ -118,5 +189,46 @@
 				</ul>
 			</div>
 		</div>
+                <script>
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].addEventListener("click", function() {
+                        /* Toggle between adding and removing the "active" class,
+                        to highlight the button that controls the panel */
+                        this.classList.toggle("active");
+
+                        /* Toggle between hiding and showing the active panel */
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    });
+                }
+                
+                var acc2 = document.getElementsByClassName("accordionInner");
+                var i;
+
+                for (i = 0; i < acc2.length; i++) {
+                    acc2[i].addEventListener("click", function() {
+                        /* Toggle between adding and removing the "active" class,
+                        to highlight the button that controls the panel */
+                        this.classList.toggle("active");
+
+                        /* Toggle between hiding and showing the active panel */
+                        var panel = this.nextElementSibling;
+                        if (panel.style.display === "block") {
+                            panel.style.display = "none";
+                        } else {
+                            panel.style.display = "block";
+                        }
+                    });
+                }
+                
+                
+                </script>
 	</body>
 </html>
