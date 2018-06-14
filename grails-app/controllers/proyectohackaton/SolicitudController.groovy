@@ -106,11 +106,13 @@ class SolicitudController {
     
     def crea(){
         println "entra a cera controller"
-        solicitudesService.crea(params)
+        println "params: ${params}"
+        [configuracionVariable:solicitudesService.crea(params), params:params]
     }
     
     def guarda(){
         println "entra a guarda controller"
+        println "params:${params}"
         solicitudesService.guarda(params)
     }
     

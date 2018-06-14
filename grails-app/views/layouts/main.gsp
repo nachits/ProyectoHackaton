@@ -58,7 +58,7 @@
                     <li id="botonInicio" >
                         <a class="home" href="${createLink(uri: '/')}">Inicio</a>
                     </li>
-                    <li><g:link controller="solicitud" action="create">Feriado Legal</g:link></li>
+                    <li><g:link controller="solicitud" action="crea" params="[tipoSolicitudId:1]">Feriado Legal</g:link></li>
                     <li id="botonInicio" >
                         <g:link controller="solicitud" action="index">Consulta solicitudes</g:link>
                     </li>
