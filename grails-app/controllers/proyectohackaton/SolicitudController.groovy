@@ -11,12 +11,13 @@ class SolicitudController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def solicitudesService
     def aprobacionService
+    def generadorPDFService
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         
         def colaborador = Colaborador.get(session.idUsuario)
-        def solicitudes = Solicitud.findAllByColaborador(colaborador)
+        def solicitudes = Solicitud.findAllByColaborador(colaborador,[sort: "id", order: "desc"])
         def listaSolicitudes = []
         solicitudes.each{
             listaSolicitudes<<[id:it.id,
@@ -35,7 +36,7 @@ class SolicitudController {
                 cantidadDias:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor,
                 fechaDesdeSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaDesde'}?.valor,
                 fechaHastaSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaHasta'}?.valor,
-                saldoVacaciones:it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger()
+                saldoVacaciones:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger():""
             ]
         }
 
@@ -150,6 +151,16 @@ class SolicitudController {
         render(view:'indexFlujo', model: [
             listaParaAprobar: listaParaAprobar, 
         ])
+    }
+    def generacionArchivo() {
+        def solicitudes = Solicitud.get(params.id)
+        def tipoSolicitud = solicitudes.tipoSolicitud
+        def plantillaInstance = Plantilla.findByTipoSolicitud(tipoSolicitud)
+        byte[] pdf = generadorPDFService.generarPDFconHTML(plantillaInstance.html,[:])
+        response.contentType = 'application/pdf'
+        response.setHeader "Content-disposition", "attachment; filename=plantilla_vista_previa.pdf"
+        response.outputStream << pdf
+        response.outputStream.flush()
     }
    
 }

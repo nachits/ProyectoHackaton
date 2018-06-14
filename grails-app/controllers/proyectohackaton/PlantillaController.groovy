@@ -93,6 +93,7 @@ class PlantillaController {
         }
     }
     def generacionArchivo() {
+        println "params: ${params}"
         def tipoSolicitud = TipoSolicitud.get(params.id)
         def plantillaInstance = Plantilla.findByTipoSolicitud(tipoSolicitud)
         byte[] pdf = generadorPDFService.generarPDFconHTML(plantillaInstance.html,[:])

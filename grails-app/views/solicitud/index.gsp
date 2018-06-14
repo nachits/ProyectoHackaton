@@ -15,7 +15,7 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table border="1">
+			<table class="table table-bordered">
 			<thead>
                                 <tr>
                                         <th><g:message code="solicitud.estado.label" default="N° Solicitud" /></th>
@@ -35,6 +35,7 @@
                                         <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha desde permiso')}" />
                                         <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha hasta permiso')}" />
                                         <th><g:message code="solicitud.estado.label" default="Saldo vacaciones" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Solicitud PDF" /></th>
 
                                 </tr>
                         </thead>
@@ -58,6 +59,10 @@
                                                 <td> <div class="text-center">${solicitudInstance?.fechaDesdeSolicitud} </div> </td>
                                                 <td> <div class="text-center">${solicitudInstance?.fechaHastaSolicitud} </div> </td>
                                                 <td> <div class="text-center">${solicitudInstance?.saldoVacaciones} </div> </td>
+                                                <td><g:link type="button" class="btn btn-primary" action="generacionArchivo" id="${solicitudInstance?.id}">
+                                                        Ver Documento
+                                                    </g:link>
+                                                </td>
 					
 					</tr>
 				</g:each>
