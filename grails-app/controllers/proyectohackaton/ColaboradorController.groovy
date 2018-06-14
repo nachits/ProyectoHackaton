@@ -104,10 +104,20 @@ class ColaboradorController {
     
     def entrar(params){
         def colaborador=Colaborador.findByNombreUsuario(params.nombreUsuario)
+       
         
         if(colaborador){
             session.nombreUsuario=colaborador.nombreUsuario
             session.idUsuario=colaborador.id
+            session.esAprobador=false
+            session.esTrabajador=false
+            colaborador.roles.each{
+                if(it.codigo=="2"){ //2 es key de aprobador
+                    session.esAprobador=true
+                }else if(it.codigo=="1"){
+                    session.esTrabajador=true
+                }
+            }
         }else{
             session.invalidate()
         }
