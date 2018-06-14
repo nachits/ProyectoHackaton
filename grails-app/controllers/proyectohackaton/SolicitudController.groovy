@@ -107,4 +107,9 @@ class SolicitudController {
         println "entra a cera controller"
         solicitudesService.crea(params)
     }
+    
+    def guarda(){
+        println "entra a guarda controller"
+        solicitudesService.guarda(params)
+    }
 }
