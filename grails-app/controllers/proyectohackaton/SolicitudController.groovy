@@ -11,7 +11,6 @@ class SolicitudController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     def solicitudesService
     def aprobacionService
-    def session = RequestContextHolder.currentRequestAttributes().getSession()  
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
