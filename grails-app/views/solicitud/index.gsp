@@ -23,24 +23,46 @@
 			<table>
 			<thead>
                                 <tr>
-
-                                        <th><g:message code="solicitud.estado.label" default="Tipo solicitud" /></th>
-
-                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha solicitud')}" />
-
-                                        <th><g:message code="solicitud.tipoSolicitud.label" default="Estado" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="N° Solicitud" /></th>
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha ingreso')}" />
+                                        <th><g:message code="solicitud.estado.label" default="Categoria" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Tipo Solicitud" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Estado" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Colaborador" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Gerencia" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Total Autorizaciones" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Total Autorizadas" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Responsable Actual" /></th>
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha desde autorizacion')}" />
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha hasta autorizacion')}" />
+                                        <th><g:message code="solicitud.estado.label" default="Dias transcurridos" /></th>
+                                        <th><g:message code="solicitud.estado.label" default="Dias solicitados" /></th>
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha desde permiso')}" />
+                                        <g:sortableColumn property="fechaCreacion" title="${message(code: 'solicitud.fechaCreacion.label', default: 'Fecha hasta permiso')}" />
+                                        <th><g:message code="solicitud.estado.label" default="Saldo vacaciones" /></th>
 
                                 </tr>
                         </thead>
 				<tbody>
 				<g:each in="${solicitudInstanceList}" status="i" var="solicitudInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td> <div class="text-center">${solicitudInstance?.tipoSolicitud.glosa} </div> </td>
-					
-						<td><g:formatDate date="${solicitudInstance.fechaCreacion}" /></td>
-					
-						<td> <div class="text-center">${solicitudInstance?.estado.glosa} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.id} </div> </td>
+                                                <td><g:formatDate date="${solicitudInstance.fechaCreacion}" /></td>
+                                                <td> <div class="text-center">${solicitudInstance?.categoria} </div> </td>
+						<td> <div class="text-center">${solicitudInstance?.tipoSolicitud} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.estado} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.colaborador} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.gerencia} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.totalAutorizaciones} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.totalAutorizados} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.responsable} </div> </td>					
+						<td> <div class="text-center">${solicitudInstance?.fechaDesde} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.fechaHasta} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.diasTranscurridos} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.cantidadDias} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.fechaDesdeSolicitud} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.fechaHastaSolicitud} </div> </td>
+                                                <td> <div class="text-center">${solicitudInstance?.saldoVacaciones} </div> </td>
 					
 					</tr>
 				</g:each>

@@ -14,7 +14,33 @@ class SolicitudController {
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Solicitud.list(params), model:[solicitudInstanceCount: Solicitud.count()]
+        
+        def colaborador = Colaborador.get(1)
+        def solicitudes = Solicitud.findAllByColaborador(colaborador)
+        def listaSolicitudes = []
+        solicitudes.each{
+            println it.flujosSolicitud?.find{it.activo}.aprobador.nombre
+            listaSolicitudes<<[id:it.id,
+                fechaCreacion:it.fechaCreacion,
+                categoria:it.tipoSolicitud?.categoria?.glosa,
+                tipoSolicitud:it.tipoSolicitud.glosa,
+                estado:it.estado?.glosa,
+                colaborador:it.colaborador?.nombre,
+                gerencia:it.colaborador.grupoColaborador.gerencia,
+                totalAutorizaciones:it.flujosSolicitud.size(),
+                totalAutorizados:it.flujosSolicitud?.find{it.activo}.orden-1,
+                responsable:it.flujosSolicitud?.find{it.activo}.aprobador.nombre,
+                fechaDesde:it.flujosSolicitud?.find{it.activo}.fechaCreacion,
+                fechaHasta:it.flujosSolicitud?.find{it.activo}.fechaActualizacion,
+                diasTranscurridos:it.flujosSolicitud?.find{it.activo}.fechaCreacion-new Date(),
+                cantidadDias:it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor,
+                fechaDesdeSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaDesde'}?.valor,
+                fechaHastaSolicitud:it.propiedadesSolicitud?.find{propiedad->propiedad.configuracion.propiedad=='fechaHasta'}?.valor,
+                saldoVacaciones:it.colaborador.saldoVacaciones-it.propiedadesSolicitud?.find{it.configuracion.propiedad=='cantidadDias'}?.valor.toInteger()
+            ]
+        }
+
+       [solicitudInstanceList:listaSolicitudes]
     }
 
     def show(Solicitud solicitudInstance) {
