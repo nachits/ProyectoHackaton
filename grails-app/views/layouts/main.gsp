@@ -56,7 +56,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- INICIO ================================================== -->
                     <li id="botonInicio" >
-                        <g:link controller="index">Inicio</g:link>
+                        <a class="home" href="${createLink(uri: '/')}">Inicio</a>
                     </li>
                     <li><g:link controller="solicitud" action="create">Feriado Legal</g:link></li>
                     <li id="botonInicio" >
